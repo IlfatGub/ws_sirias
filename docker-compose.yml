@@ -15,6 +15,7 @@ services:
       - ./public:/var/www/html/public
     depends_on:
       -  php-fpm
+    restart: always
 
   php-fpm:
     container_name: sirias_php
