@@ -1,0 +1,38 @@
+version: "3.1"
+services:
+  nginx:
+    container_name: sirias_nginx
+    build:
+      context: nginx
+      dockerfile: Dockerfile
+    ports:
+      - "82:80"
+    links:
+      - php-fpm
+    volumes:
+      - ./nginx:/etc/nginx/conf.d:ro
+      - ./logs/nginx:/var/log/nginx
+      - ./public:/var/www/html/public
+    depends_on:
+      -  php-fpm
+
+  php-fpm:
+    container_name: sirias_php
+    build:
+      context: .
+      dockerfile: php/Dockerfile
+    environment:
+      TZ: "Asia/Yekaterinburg"
+    ports:
+      - "9002:9000"
+    volumes:
+      - ./public/:/var/www/html/public
+      - ./php_dc/php.ini:/usr/local/etc/php/conf.d/custom.ini
+    restart: always
+
+networks:
+  default:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16
