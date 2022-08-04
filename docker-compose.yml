@@ -26,6 +26,7 @@ services:
       TZ: "Asia/Yekaterinburg"
       SQL_ROOT_PASSWORD: ${SQL_ROOT_PASSWORD}
       SQL_IP: ${SQL_IP}
+      cookieValidationKey_sirias: ${cookieValidationKey_sirias}
     ports:
       - "9002:9000"
     volumes:
