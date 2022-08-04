@@ -2,8 +2,8 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=sirias',
+    'dsn' => 'mysql:host='.getenv('SQL_IP').';dbname=sirias',
     'username' => 'root',
-    'password' => 'armagedon',
+    'password' => getenv('SQL_ROOT_PASSWORD'),
     'charset' => 'utf8',
 ];

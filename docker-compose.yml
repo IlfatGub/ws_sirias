@@ -24,6 +24,8 @@ services:
       dockerfile: php/Dockerfile
     environment:
       TZ: "Asia/Yekaterinburg"
+      SQL_ROOT_PASSWORD: ${SQL_ROOT_PASSWORD}
+      SQL_IP: ${SQL_IP}
     ports:
       - "9002:9000"
     volumes:
