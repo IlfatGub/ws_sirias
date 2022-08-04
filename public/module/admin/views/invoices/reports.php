@@ -63,8 +63,6 @@ $original = null;
                     ]
                 ]);
                 ?>
-
-
             </div>
             <div class="col-sm-2">
                 <?= $form->field($model, 'id_executor')->dropDownList(ArrayHelper::map(Executor::find()->orderBy(['name' => SORT_DESC])->all(), 'id','name'), ['prompt' => 'Выбр. исполнителя'])->label(false) ?>
@@ -93,13 +91,15 @@ $original = null;
                 <tr class="tools" >
                     <?php
                         if(isset($item->original)) { $original = $item->original == 1 ? "Оригинал" : "Копия";}
-                        $text = '<div class="reports" style="width: 1450px; padding: 5px 0">';
-                        $text.= '<div class="reports" style="width: 350px;">'.$item->org->name.'</div>';
-                        $text.= '<div class="reports" style="width: 200px;">'.$item->invoices.' от '.Invoices::getDate($item->date).'</div>';
-                        $text.= '<div class="reports" style="width: 600px;">'.$item->comment->name.'</div>';
-                        $text.= '<div class="reports" style="width: 150px;">'.$original.'</div>';
-                        $text.= '<div class="reports" style="width: 150px;">'.$item->count.'</div>';
+                        $text = '<span class="reports">';
+                        $text.= '<div class="reports-item">';
+                        $text.= '<div>'.$item->org->name.'</div>';
+                        $text.= '<div>'.$item->invoices.' от '.Invoices::getDate($item->date).'</div>';
+                        $text.= '<div>'.$item->comment->name.'</div>';
+                        $text.= '<div>'.$original.'</div>';
+                        $text.= '<div>'.$item->count.'</div>';
                         $text.= '</div>';
+                        $text.= '</span>';
                     ?>
                     <td style="margin: 0; padding: 0"><?= Html::checkbox('report[]', false, ['label' =>$text , 'value' => $item->id , 'class' => 'chekboxReport']); ?></td>
                 </tr>
