@@ -155,4 +155,26 @@ a.desc:after {
     font-weight: normal;
     vertical-align: middle;
     cursor: pointer;
+	 width: 1450px;
 }
+
+.reports-item{
+	display: flex;
+	flex-grow: 1;
+}
+.reports-item div:nth-child(1) {
+	flex: 0 0 calc((100% - 350px)/2);
+	flex-grow: 6;
+ }
+ .reports-item div:nth-child(2) {
+	flex: 0 0 calc((100% - 350px)/2);
+ }
+ .reports-item div:nth-child(3) {
+	flex: 0 0 200px;
+ }
+ .reports-item div:nth-child(4) {
+	flex: 0 0 100px;
+ }
+ .reports-item div:nth-child(5) {
+	flex: 0 0 50px;
+ }

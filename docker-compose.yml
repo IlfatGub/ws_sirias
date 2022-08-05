@@ -10,7 +10,8 @@ services:
     links:
       - php-fpm
     volumes:
-      - ./nginx:/etc/nginx/conf.d:ro
+      # - ./nginx:/etc/nginx/conf.d:ro
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./logs/nginx:/var/log/nginx
       - ./public:/var/www/html/public
     depends_on:
@@ -26,7 +27,7 @@ services:
       TZ: "Asia/Yekaterinburg"
       SQL_ROOT_PASSWORD: ${SQL_ROOT_PASSWORD}
       SQL_IP: ${SQL_IP}
-      cookieValidationKey_sirias: ${cookieValidationKey_sirias}
+      cookieValidationKey: ${cookieValidationKey_sirias}
     ports:
       - "9002:9000"
     volumes:
