@@ -28,8 +28,8 @@ services:
       SQL_ROOT_PASSWORD: ${SQL_ROOT_PASSWORD}
       SQL_IP: ${SQL_IP}
       cookieValidationKey: ${cookieValidationKey_sirias}
-    ports:
-      - "9002:9000"
+    # ports:
+      # - "9002:9000"
     volumes:
       - ./public/:/var/www/html/public
       - ./php_dc/php.ini:/usr/local/etc/php/conf.d/custom.ini
