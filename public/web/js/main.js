@@ -33,8 +33,10 @@ $(function(){
 
 
 
-    $(document).on('click', '#invoices-id_org', function () {
+    $(document).on('change', '#invoices-id_org', function () {
         var val = $(this).val();
+
+		  console.log(val);
 
         $.post('/site/dogovora?name=' + val , function(data) {
 
