@@ -34,6 +34,11 @@ services:
         - "traefik.http.routers.sirias.entrypoints=web"
         - "traefik.docker.network=traefik-public"
 
+        # https
+        - traefik.http.routers.websecure-sirias.entrypoints=websecure
+        - traefik.http.routers.websecure-sirias.tls=true
+        - traefik.http.routers.websecure-sirias.rule=Host(`sirias.nhrs.ru`)
+        - "traefik.http.services.websecure-sirias.loadbalancer.server.port=82443" 
   php-fpm:
     image: ilfatgub/php-fpm:7.2
     environment:
