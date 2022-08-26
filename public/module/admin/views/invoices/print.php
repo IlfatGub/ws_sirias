@@ -598,7 +598,7 @@ $i = 0;
     $objWriter = PHPExcel_IOFactory::createWriter($excellfile, 'Excel5');
     $objWriter->save($filepath);
 
-    $filepath = "download/export/sirias_" . date('Y-m-d h-i') . ".xls";
+    $filepath = "download/export3/sirias_" . date('Y-m-d h-i') . ".xls";
     $objWriter = PHPExcel_IOFactory::createWriter($excellfile, 'Excel5');
     $objWriter->save($filepath);
 

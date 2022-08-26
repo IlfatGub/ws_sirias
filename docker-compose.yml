@@ -53,6 +53,9 @@ services:
       - internal
     volumes:
       - type: volume
+        source: export
+        target: /var/www/html/public/web/download/export3
+      - type: volume
         source: files
         target: /var/www/html
     deploy:
@@ -76,6 +79,11 @@ volumes:
       type: nfs
       o: addr=172.17.82.26,rw,nolock
       device: ":/var/www/html/sirias.nhrs.ru"
+  export:
+    driver_opts:
+      type: cifs
+      o: addr=10.224.177.3,username=web_uit@nhrs.ru,password=mwUCFDkdaJjKyVGersHu8qnZ7S,rw,file_mode=0777,dir_mode=077
+      device: //10.224.177.3/samba2022$$/UIT/Документы/sirias
 
 networks:
   traefik-public:
