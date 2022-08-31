@@ -27,7 +27,6 @@ if (!$model->isNewRecord) {
 	$model->id_comment = Comment::findOne($model->id_comment)->name;
 	$model->date = date("Y-m-d", $model->date);
 
-	echo "<pre>";print_r($num); echo "</pre>";
 } else {
 	$model->date = date('Y-m-d');
 }
