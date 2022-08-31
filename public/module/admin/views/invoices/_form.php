@@ -10,24 +10,27 @@ use app\module\admin\models\Executor;
 use app\module\admin\models\Comment;
 use kartik\date\DatePicker;
 use kartik\select2\Select2;
+use app\module\admin\models\Dogovor;
 ?>
 
-
-
 <?php
-
-
 if (!$model->isNewRecord) {
+
+	//список договоров
+	$num = ArrayHelper::map(
+		Dogovor::find()->where(['id_org' => $model->id_org])->all(), 'id', 'name'
+	);
+
+
 	$model->id_org_parent = Org::findOne($model->id_org_parent)->name;
 	$model->id_org = Org::findOne($model->id_org)->name;
 	$model->id_comment = Comment::findOne($model->id_comment)->name;
 	$model->date = date("Y-m-d", $model->date);
+
+	echo "<pre>";print_r($num); echo "</pre>";
 } else {
 	$model->date = date('Y-m-d');
 }
-
-
-
 ?>
 <div class="device-form">
 
@@ -49,14 +52,10 @@ if (!$model->isNewRecord) {
 			]);
 			?>
 		</div>
-
-
 	</div>
 	<div class="row">
 		<div class="col-sm-6">
-
 			<?php
-
 			// Usage with ActiveForm and model
 			echo $form->field($model, 'id_org')->widget(Select2::classname(), [
 				'data' => ArrayHelper::map(
@@ -85,9 +84,7 @@ if (!$model->isNewRecord) {
 			]);
 			?>
 		</div>
-
 	</div>
-
 	<div class="row">
 		<div class="col-sm-6">
 			<?php
@@ -118,19 +115,14 @@ if (!$model->isNewRecord) {
 			?>
 		</div>
 	</div>
-
 	<div class="row">
 		<div class="col-sm-6">
 			<?php
-			echo $form->field($model, 'document')->dropDownList(['']);
+			echo $form->field($model, 'document')->dropDownList([$num]);
 			?>
 		</div>
 
 	</div>
-
-
-
-
 
 	<div class="row">
 		<div class="col-sm-6">
@@ -150,7 +142,12 @@ if (!$model->isNewRecord) {
 	<div class="form-group">
 		<?= Html::submitButton($model->isNewRecord ? 'Добавить' : 'Обновить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 	</div>
-
 	<?php ActiveForm::end(); ?>
-
 </div>
+
+
+<script>
+	var id_org_container = document.querySelector("#invoices-id_org");
+	var event = new Event('change');
+	id_org_container.dispatchEvent(event);
+</script>
